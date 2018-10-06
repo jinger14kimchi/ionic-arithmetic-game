@@ -1,0 +1,7 @@
+{
+  "name": "pinkdiary",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
