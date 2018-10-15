@@ -1,0 +1,42 @@
+<ion-content padding text-center class="bg-main">
+	<br><br><br>
+	<div>
+		<h3>Create Your Pin</h3>
+	</div>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12>
+			<ion-list>
+			  <ion-item>
+			    <ion-input type="password" class="input-pin" [(ngModel)]="pinCode" text-center></ion-input>
+			  </ion-item>
+			</ion-list>
+		</ion-col>
+		</ion-row>
+
+	  <ion-row>
+	    <ion-col col-4><button ion-button color="light" clear>1</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>2</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>3</button></ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col col-4><button ion-button color="light" clear>4</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>5</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>6</button></ion-col>
+	  </ion-row>
+	  <ion-row>
+	    <ion-col col-4><button ion-button color="light" clear>7</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>8</button></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>9</button></ion-col>
+	  </ion-row>
+	  <ion-row text-center>
+	  	<ion-col col-4><ion-icon name="checkmark" md="md-checkmark"></ion-icon></ion-col>
+	    <ion-col col-4><button ion-button color="light" clear>0</button></ion-col>
+	  	<ion-col col-4><ion-icon name="close" md="md-close"></ion-icon></ion-col>
+	  </ion-row>
+	</ion-grid>
+	<br>
+	<div padding>
+	  <button ion-button class="btn-login" (click)="createPinCode()">Create Pin</button>
+	</div>
+</ion-content>
