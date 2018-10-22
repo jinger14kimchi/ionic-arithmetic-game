@@ -1,33 +1,37 @@
 <ion-content padding>
+	<div class="timer">
+		<h2>Time: {{ time }}</h2>
+	</div>
+
 	<div class="problem" text-center>
-		5 + 8
+		{{ firstNum }} {{ operation }} {{ secondNum }}
 	</div>
 
 	<div class="answer" text-center>
-    	<ion-input type="text" disabled="true" class="input" text-center></ion-input>
+    	<ion-input type="text" disabled="true" class="input" text-center value="{{ inputtedNum }}"></ion-input>
 	</div>
 
 	<ion-grid text-center  class="nums">
 
 	  <ion-row>
-	    <ion-col col-4 class="box"><button class="numButton" clear>1</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>2</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>3</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(1)"clear>1</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(2)"clear>2</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(3)"clear>3</button></ion-col>
 	  </ion-row>
 	  <ion-row>
-	    <ion-col col-4 class="box"><button class="numButton" clear>4</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>5</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>6</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(4)"clear>4</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(5)"clear>5</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(6)"clear>6</button></ion-col>
 	  </ion-row>
 	  <ion-row>
-	    <ion-col col-4 class="box"><button class="numButton" clear>7</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>8</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>9</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(7)"clear>7</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(8)"clear>8</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(9)"clear>9</button></ion-col>
 	  </ion-row>
 	  <ion-row text-center>
-	  	<ion-col col-4><button ion-button>Clear</button></ion-col>
-	    <ion-col col-4 class="box"><button class="numButton" clear>0</button></ion-col>
-	  	<ion-col col-4><button ion-button>Go</button></ion-col>
+	  	<ion-col col-4><button ion-button (click)="clear()">Clear</button></ion-col>
+	    <ion-col col-4 class="box"><button class="numButton" (click)="numClicked(0)"clear>0</button></ion-col>
+	  	<ion-col col-4><button ion-button (click)="submitAnswer()">Go</button></ion-col>
 
 	  </ion-row>
 	</ion-grid>
