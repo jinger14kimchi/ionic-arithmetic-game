@@ -1,18 +1,54 @@
 <ion-header class="header">
-
-		<p>How are you?</p>
-
+	<p>How are you?</p>
 </ion-header>
 <ion-content padding>
 	<div>
-		<input type="text" class="entry" maxlength="4" text-center placeholder="">
-	</div>
-		<ion-grid class="timeline-menu">
+		<ion-grid>
 			<ion-row>
-				<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon name="ios-create"></ion-icon></button></ion-col>
-				<ion-col col-3><button ion-button clear (click)="gotoCalendar()"> <ion-icon name="md-calendar"></ion-icon></button></ion-col>
-				<ion-col col-3><button ion-button clear (click)="gotoProfile()"> <ion-icon name="person"></ion-icon></button></ion-col>
-				<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon name="menu"></ion-icon></button></ion-col>
+				<ion-col col-10>
+					<ion-img width="40" height="40" src="../../assets/imgs/panda-pink.png"></ion-img>
+					<textarea type="text" class="entry" placeholder="Spill it out.." id="content" [(ngModel)]="content"></textarea>
+					<ion-item>
+					  <ion-label>Mood</ion-label>
+					  <ion-select [(ngModel)]="mood">
+					    <ion-option value="{{ mood[0] }}">Joy</ion-option>
+					    <ion-option value="{{ mood[1]  }}">Disgust</ion-option>
+					    <ion-option value="{{ mood[2]  }}">Anger</ion-option>
+					    <ion-option value="{{ mood[3]  }}">Sadness</ion-option>
+					    <ion-option value="{{ mood[4]  }}">Fear</ion-option>
+					  </ion-select>
+					</ion-item>
+				</ion-col>
+				<ion-col col-2 text-center><button ion-button (click)="addNewEntry(content)">Post</button></ion-col>
 			</ion-row>
 		</ion-grid>
+	</div>
+	<ion-grid class="timeline-menu">
+		<ion-row>
+			<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon name="ios-create"></ion-icon></button></ion-col>
+			<ion-col col-3><button ion-button clear (click)="gotoCalendar()"> <ion-icon name="md-calendar"></ion-icon></button></ion-col>
+			<ion-col col-3><button ion-button clear (click)="gotoProfile()"> <ion-icon name="person"></ion-icon></button></ion-col>
+			<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon name="menu"></ion-icon></button></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<div class="entries-list" *ngFor="let item of items">
+		<ion-list>
+		  <ion-item class="entry-display" id="{{ item.id }}">		  	
+		  	
+		  	<div class="entry-profile">
+				<ion-img width="80" height="80" src="../../assets/imgs/panda-pink.png" class="float-left"></ion-img>
+		  		
+			  		<h1>{{ item.mood }}</h1>
+			  		<small>{{ item.date }}</small>	
+		  	</div>		
+		  	<hr>
+		  	<div class="clear">
+		  		<p class="entry-content">{{ item.entry }}</p>
+		  		
+		  	</div>  		
+		  </ion-item>
+		</ion-list>
+	</div>
+
 </ion-content>

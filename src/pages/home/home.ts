@@ -1,45 +1,61 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { NavController, Platform } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
-import { TimelinePage } from '../timeline/timeline';
-
+import { TimelinePage } from '../timeline/timeline'; 
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-	pinCode: string = "";
+	pinCode:string = "";
+	inputCode:string = "";
 	TimelinePage = TimelinePage;
-	
-  constructor(public navCtrl: NavController,) { }
-
- //  	 private sqlite: SQLite
-
- //	this.sqlite.create({
-	// 	name: 'data.db',
-	// 	location: 'default'
-	// })
-	// .then((db: SQLiteObject) => {
-	// 	db.executeSql('create table pincode(pincode VARCHAR(4))', {})
-	// 	  .then(() => console.log('Executed SQL'))
-	// 	  .catch(e => console.log(e));
-	// })
-	// .catch(e => console.log(e));
+	doneSetup: boolean = false;
+	private storage: any;
+ 
+  constructor(public navCtrl: NavController, private storage: Storage) {
+  	this.storage = storage;
+  	storage.get('pinCode').then((val) => {
+	  	if(val) {
+	  		this.pinCode = val;
+	  		console.log("pincode assigned to val = ", this.pinCode);
+	  		this.doneSetup = true;
+	  	} 
+	  });  		
+  }
 
 	createPinCode() {
-	  	console.log("createPinCode inside Login");
-	  	console.log(this.pinCode);	  	
-	  	this.navCtrl.push(TimelinePage);
+	  	console.log("inputed pincode = " , this.inputCode);	 
+
+	  	if(this.doneSetup) {
+	  		// if naa nay nabuhat nasulod sa storage
+		  	if(this.pinCode == this.inputCode) {
+		  		console.log("pinCode MATCH");
+			  	this.navCtrl.push(TimelinePage);
+		  	}
+		  	else {
+		  		alert("Sayop ang code");
+		  		this.clearInput();
+		  		this.inputCode = "";
+		  	}
+		  }
+
+		  else {
+		  	this.storage.set('pinCode', this.inputCode);
+		  	console.log("new pincode ", this.inputCode);
+			  this.navCtrl.push(TimelinePage);
+		  	alert("Pincode Created Successfully");
+		  }
 	}
 
 	clearInput() {
-		this.pinCode = "";
+		this.inputCode = "";
 	}
 
 	getInput(num) {
-		this.pinCode += num;
-		console.log("num" , num);
+		this.inputCode += num+"";
 	}
+ 
 }
