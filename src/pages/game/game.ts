@@ -12,6 +12,7 @@ export class GamePage {
 	inputtedNum = "";
 	time = 0;
 	score = 0;
+  answer:any;
 
 	operation;
 	firstNum;

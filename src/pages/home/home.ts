@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
-import { LoginPage } from '../login/login';
-
-import { StartPage } from '../start/start';
-import { HelpPage } from '../help/help';
+import { TimelinePage } from '../timeline/timeline';
 
 
 @Component({
@@ -12,17 +10,36 @@ import { HelpPage } from '../help/help';
   templateUrl: 'home.html'
 })
 export class HomePage {
-	LoginPage = LoginPage;
-	StartPage = StartPage;
-	HelpPage = HelpPage;
+	pinCode: string = "";
+	TimelinePage = TimelinePage;
 	
-  constructor(public navCtrl: NavController) { }
+  constructor(public navCtrl: NavController,) { }
 
-	gotoHelp() {
-		this.navCtrl.push(HelpPage);
+ //  	 private sqlite: SQLite
+
+ //	this.sqlite.create({
+	// 	name: 'data.db',
+	// 	location: 'default'
+	// })
+	// .then((db: SQLiteObject) => {
+	// 	db.executeSql('create table pincode(pincode VARCHAR(4))', {})
+	// 	  .then(() => console.log('Executed SQL'))
+	// 	  .catch(e => console.log(e));
+	// })
+	// .catch(e => console.log(e));
+
+	createPinCode() {
+	  	console.log("createPinCode inside Login");
+	  	console.log(this.pinCode);	  	
+	  	this.navCtrl.push(TimelinePage);
 	}
 
-	gotoStart() {
-		this.navCtrl.push(StartPage);
+	clearInput() {
+		this.pinCode = "";
+	}
+
+	getInput(num) {
+		this.pinCode += num;
+		console.log("num" , num);
 	}
 }
