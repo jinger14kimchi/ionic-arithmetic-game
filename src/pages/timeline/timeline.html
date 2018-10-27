@@ -1,18 +1,22 @@
 <ion-header class="header">
 
-		<p>How are you?</p>
+		<img src="assets/imgs/header.jpg" id="header">
 
 </ion-header>
-<ion-content padding>
-	<div>
-		<input type="text" class="entry" maxlength="4" text-center placeholder="">
-	</div>
+
+<ion-content>
+
 		<ion-grid class="timeline-menu">
 			<ion-row>
-				<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon name="ios-create"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon  name="ios-create"></ion-icon></button></ion-col>
 				<ion-col col-3><button ion-button clear (click)="gotoCalendar()"> <ion-icon name="md-calendar"></ion-icon></button></ion-col>
-				<ion-col col-3><button ion-button clear (click)="gotoProfile()"> <ion-icon name="person"></ion-icon></button></ion-col>
-				<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon name="menu"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoProfile()"> <ion-icon  name="person"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon n name="menu"></ion-icon></button></ion-col>
 			</ion-row>
 		</ion-grid>
+		<div>
+ 			<input type="textarea" cols="10" wrap="hard" class="entry" placeholder="Write Post">
+			<button class="post-button" ion-button small>Post</button>
+		</div>
+<hr>
 </ion-content>

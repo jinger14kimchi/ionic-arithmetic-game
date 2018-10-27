@@ -1,35 +1,37 @@
-<ion-content padding text-center middle class="main-bg"><br>
+<ion-content text-center middle class="main-bg">
 
-
-	<ion-slides>
+<!-- 	<ion-slides>
 	  <ion-slide>
-	  	<p>Create your pin code</p>
-			<input type="password" class="inputPin" maxlength="4" text-center value="{{ pinCode }}">
-		  	<div class="pincode-container">
+ -->	  	<img src="assets/imgs/logo copy.png" id="logo">
+	  	<h1 id="title"> pinkpanda </h1>
+	  	<small id="subtitle">your friend</small>
+	  	<p id="create-pin">Create your pin code</p>
+			<input type="password" class="input-pin" maxlength="4" text-center value="{{ pinCode }}">
+		  	<div class="pincode-containerm">
 					<ion-grid class="pincode">
 					  <ion-row>
-					    <ion-col col-4><button ion-button clear (click)="getInput(1)">1</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(2)">2</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(3)">3</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(1)">1</button></ion-col>	
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(2)">2</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(3)">3</button></ion-col>
 					  </ion-row>
 					  <ion-row>
-					    <ion-col col-4><button ion-button clear (click)="getInput(4)">4</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(5)">5</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(6)">6</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(4)">4</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(5)">5</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(6)">6</button></ion-col>
 					  </ion-row>
 					  <ion-row>
-					    <ion-col col-4><button ion-button clear (click)="getInput(7)">7</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(8)">8</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(9)">9</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(7)">7</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(8)">8</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(9)">9</button></ion-col>
 					  </ion-row>
 					  <ion-row>
-					    <ion-col col-4><button ion-button clear (click)="createPinCode()"> <ion-icon name="checkmark"></ion-icon></button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="getInput(0)">0</button></ion-col>
-					    <ion-col col-4><button ion-button clear (click)="clearInput()"> <ion-icon name="close"></ion-icon></button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="createPinCode()"> <ion-icon name="checkmark"></ion-icon></button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(0)">0</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="clearInput()"> <ion-icon name="close"></ion-icon></button></ion-col>
 					  </ion-row>
 					</ion-grid>
 				</div>
-
+<!-- 
 	  </ion-slide>
 
 	  <ion-slide>
@@ -39,7 +41,7 @@
 	  <ion-slide>
 	    <h1>Slide 3</h1>
 	  </ion-slide>
-	</ion-slides>
+	</ion-slides> -->
 
 
 </ion-content>

@@ -22,23 +22,97 @@
 }
 
 .main-bg {
-	background-color: #fff;
+	background-color: #ff4e7c;
+	margin-top:0px;
+
 }
 
 .pincode-container {
 	max-width: 250px;
 }
 
-.inputPin {
+.input-pin {
 	border-color: none;
 }
 
-.header {
-	background-color: #fc97cb;
-	height: 40px!important;
-	/*top: 0;*/
-	/*margin: 0;*/
-	/*color: #fff;*/
-	/*padding: 5px;*/
+.pin-button{
+	color:#fff; 
+	font-weight: 300;
+	margin-bottom:0px;
+}
+
+#title{
+	color:#fff;
+	line-height:0px;	
+}
+
+#subtitle{
+	letter-spacing: 4px;
+    font-size: 14px;
+	color: #000;
+	line-height:0; 	
+	margin-bottom:6 	0px;
+}	
+
+.slide-zoom{
+	width:80%;
+}
+
+
+.col{
+	padding:0px;
+}
+
+#logo{
+	width: 200px;
+    margin-right: 2em;
+    margin-top: 3em;
+
+}
+
+#create-pin{
+	color: #fff;
+	line-height:0px;
+	font-weight: 300;
+    font-size: 16px;
+    margin-bottom:30px;
+}
+
+
+#header{
 	text-align: center;
+	width:100%;
+	position:fixed;	
+}
+
+.entry {
+	margin-left:10px;
+	width:95%;
+	height:80px;
+	font-size:13px;
+    line-height:0px;
+  
+}
+
+input:focus {
+    border: 3px solid pink;
+}
+
+.post-button{
+	margin-left:10px;
+	font-size:13px;
+	background-color: #ff4e7c;
+}
+
+.timeline-menu{
+	margin-top: 50px;
+	text-align:center;
+}
+
+
+ion-icon{
+	font-size: 25px;
+	color: #ff4e7c;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
