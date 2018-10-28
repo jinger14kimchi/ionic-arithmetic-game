@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-import { StartPage } from '../start/start';
-
 @IonicPage()
 @Component({
-  selector: 'page-help',
-  templateUrl: 'help.html',
+  selector: 'page-header',
+  templateUrl: 'header.html',
 })
-export class HelpPage {
-	StartPage = StartPage;
+export class HeaderPage {
+
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  gotoStart() {
-  	this.navCtrl.push(StartPage);
-  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HelpPage');
+    console.log('ionViewDidLoad HeaderPage');
   }
+
+  gotoTimeline() {  	
+	  	this.navCtrl.push(TimelinePage);
+	}
 
 }

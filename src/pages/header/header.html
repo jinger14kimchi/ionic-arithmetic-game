@@ -1,11 +1,7 @@
 <ion-header class="header">
-
-		<img src="assets/imgs/header.jpg" id="header">
-
+	<img src="assets/imgs/header.jpg" id="header">
 </ion-header>
-
 <ion-content>
-
 		<ion-grid class="timeline-menu">
 			<ion-row>
 				<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon  name="ios-create"></ion-icon></button></ion-col>
@@ -14,17 +10,4 @@
 				<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon n name="menu"></ion-icon></button></ion-col>
 			</ion-row>
 		</ion-grid>
-		<div>
- 			<input type="textarea" cols="10" wrap="hard" class="entry" placeholder="Write Post">
- 			<select class="mood">
- 				<option style="display: none">Choose Emotion</option>
- 				<option value="happy">Joy</option>
- 				<option value="sad">Sad</option>
- 				<option value="anger">Anger</option>
- 				<option value="fear">Fear</option>
- 				<option value="disgust">Disgust</option>
- 			</select>
-			<button class="post-button" ion-button small>Post</button>
-		</div>
-<hr>
-</ion-content>
+	</ion-content>
