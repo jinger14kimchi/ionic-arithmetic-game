@@ -13,7 +13,7 @@
 	  	<img src="assets/imgs/logo copy.png" id="logo">
 	  	<h1 id="title"> pinkpanda </h1>
 	  	<small id="subtitle">your friend</small>
-			<input type="password" class="input-pin" maxlength="4" text-center value="{{ pinCode }}">
+			<input type="password" class="input-pin" maxlength="4" text-center value="{{ inputCode }}">
 			<p id="create-pin" *ngIf="doneSetup == false; else elseBlock">Create your pin code</p>
 			<ng-template #elseBlock>
 				<p>Enter your pin</p>

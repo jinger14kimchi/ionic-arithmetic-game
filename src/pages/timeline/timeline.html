@@ -20,7 +20,7 @@
 			</ion-row>
 		</ion-grid>
 		<div>
- 			<textarea type="text" class="entry" placeholder="Spill it out.."></textarea>
+ 			<textarea class="entry" placeholder="Spill it out.."></textarea>
  			<select class="mood">
  				<option style="display: none">Choose Emotion</option>
  				<option value="happy">Joy</option>
@@ -29,7 +29,7 @@
  				<option value="fear">Fear</option>
  				<option value="disgust">Disgust</option>
  			</select>
-			<button class="post-button" ion-button small>Post</button>
+			<button class="post-button" ion-button small (click)="addNewEntry()">Post</button>
 		</div>
 			<hr>
 

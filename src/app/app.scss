@@ -67,7 +67,6 @@
 	width: 200px;
     margin-right: 2em;
     margin-top: 3em;
-
 }
 
 #create-pin{
@@ -82,9 +81,6 @@
 
 #header{
 	text-align: center;
-
-
-.clear {
 	float: clear;
 	width:100%;
 	position:fixed;	
@@ -153,7 +149,6 @@ ion-icon[aria-selected=true]{
 	display:block;
 	margin:auto;
 	padding-top:20px;
-	
 }
 
 
@@ -164,5 +159,5 @@ ion-icon[aria-selected=true]{
     margin-left: 10px;
     margin-top: 40px;
     text-decoration-style: dotted;
-    font-weight: bolder;
+    font-size: bolder;
 }

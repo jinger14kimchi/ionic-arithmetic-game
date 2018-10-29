@@ -8,12 +8,13 @@ import { TimelinePage } from '../pages/timeline/timeline';
 import { ProfilePage } from '../pages/profile/profile';
 import { CalendarPage } from '../pages/calendar/calendar';
 import { HeaderPage } from '../pages/header/header';
+import { GamePage } from '../pages/game/game';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = GamePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

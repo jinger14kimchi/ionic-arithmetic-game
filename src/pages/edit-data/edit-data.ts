@@ -10,7 +10,7 @@ import { Toast } from '@ionic-native/toast';
 })
 export class EditDataPage {
 
-  data = { rowid:0, date:"", type:"", description:"", amount:0 };
+  data = { rowid:0, date:"", type:"", content:""};
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -21,10 +21,10 @@ export class EditDataPage {
 
   getCurrentData(rowid) {
     this.sqlite.create({
-      name: 'ionicdb.db',
+      name: 'pandiary.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('SELECT * FROM expense WHERE rowid=?', [rowid])
+      db.executeSql('SELECT * FROM emtry WHERE rowid=?', [rowid])
         .then(res => {
           if(res.rows.length > 0) {
             this.data.rowid = res.rows.item(0).rowid;
@@ -54,10 +54,10 @@ export class EditDataPage {
 
   updateData() {
     this.sqlite.create({
-      name: 'ionicdb.db',
+      name: 'pandiary.db',
       location: 'default'
     }).then((db: SQLiteObject) => {
-      db.executeSql('UPDATE expense SET date=?,type=?,description=?,amount=? WHERE rowid=?',[this.data.date,this.data.type,this.data.description,this.data.amount,this.data.rowid])
+      db.executeSql('UPDATE emtry SET date=?,type=?,content WHERE rowid=?',[this.data.date,this.data.type,this.data.content,this.data.rowid])
         .then(res => {
           console.log(res);
           this.toast.show('Data updated', '5000', 'center').subscribe(

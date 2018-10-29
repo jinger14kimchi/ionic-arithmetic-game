@@ -40,7 +40,7 @@ export class HomePage {
 		  		this.inputCode = "";
 		  	}
 		  }
-
+		  
 		  else {
 		  	this.storage.set('pinCode', this.inputCode);
 		  	console.log("new pincode ", this.inputCode);
