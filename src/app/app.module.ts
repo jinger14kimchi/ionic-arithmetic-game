@@ -20,6 +20,7 @@ import { Toast } from '@ionic-native/toast';
 
 import { AddDataPage } from '../pages/add-data/add-data';
 import { EditDataPage } from '../pages/edit-data/edit-data';
+import { GamePage } from '../pages/game/game';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EditDataPage } from '../pages/edit-data/edit-data';
     TimelinePage,
     MainMenuPage,
     EditDataPage,
-    AddDataPage
+    AddDataPage,
+    GamePage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { EditDataPage } from '../pages/edit-data/edit-data';
     TimelinePage,
     MainMenuPage,
     EditDataPage,
-    AddDataPage
+    AddDataPage,
+    GamePage
   ],
   providers: [
     StatusBar,
