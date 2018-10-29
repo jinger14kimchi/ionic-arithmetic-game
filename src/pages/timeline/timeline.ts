@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { Toast } from '@ionic-native/toast';
 
 @IonicPage()
 @Component({
@@ -38,21 +41,47 @@ export class TimelinePage {
 	selected_mood = "";
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private storage: Storage ) {
-  	this.storage = storage;
-
-  	this.storage.get("entries").then(val => {
-  		if(val != null && val != undefined) {
-  			this.items = JSON.parse(val);
-  			this.reversed_items = this.items.reverse();
-  		} 
-  		else {
-		  	this.storage.set("entries", JSON.stringify(this.entries));
-  		}
-  	});
-  	this.getAllEntries();
-
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private sqlite: SQLite,
+    private toast: Toast,
+    private storage: Storage) {
+    this.storage = storage;
   }
+
+
+  createDatabase() {   
+    this.sqlite.create({
+      name: 'pandiary.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('INSERT INTO entry VALUES(NULL,?,?,?,?)',[this.data.date,this.data.mood,this.data.content])
+        .then(res => {
+          console.log(res);
+          this.toast.show('Data saved', '5000', 'center').subscribe(
+            toast => {
+              this.navCtrl.popToRoot();
+            }
+          );
+        })
+        .catch(e => {
+          console.log(e);
+          this.toast.show(e, '5000', 'center').subscribe(
+            toast => {
+              console.log(toast);
+            }
+          );
+        });
+    }).catch(e => {
+      console.log(e);
+      this.toast.show(e, '5000', 'center').subscribe(
+        toast => {
+          console.log(toast);
+        }
+      );
+    });
+  }
+}
 
   getAllEntries() {
   	this.storage.get("entries").then(val => {

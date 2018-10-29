@@ -1,4 +1,5 @@
 <ion-content text-center middle class="main-bg"> 
+	<div *ngIf="doneSetup == false; else elseBlock">		
 	<ion-slides>
 	  <ion-slide>
 	  	<img src="assets/imgs/wf1 copy.jpg">
@@ -9,16 +10,13 @@
 	  <ion-slide>
 	  	<img src="assets/imgs/wf3 copy.jpg">
 	  </ion-slide>
-		<ion-slide>
+	  
+	  <ion-slide>
 	  	<img src="assets/imgs/logo copy.png" id="logo">
 	  	<h1 id="title"> pinkpanda </h1>
 	  	<small id="subtitle">your friend</small>
 			<input type="password" class="input-pin" maxlength="4" text-center value="{{ inputCode }}">
-			<p id="create-pin" *ngIf="doneSetup == false; else elseBlock">Create your pin code</p>
-			<ng-template #elseBlock>
-				<p>Enter your pin</p>
-			</ng-template>
-
+			<p>Create your pin code</p>
 		  	<div class="pincode-containerm">
 					<ion-grid class="pincode">
 					  <ion-row>
@@ -43,8 +41,47 @@
 					  </ion-row>
 					</ion-grid>
 				</div>
-			</ion-slide>	
-	</ion-slides>
+			</ion-slide>
+		</ion-slides>
+	</div>
+		
+	<ng-template #elseBlock>
+
+	<ion-slides>
+	  <ion-slide>
+	  	<img src="assets/imgs/logo copy.png" id="logo">
+	  	<h1 id="title"> pinkpanda </h1>
+	  	<small id="subtitle">your friend</small>
+			<input type="password" class="input-pin" maxlength="4" text-center value="{{ inputCode }}">
+			<p>Enter your pin code</p>
+		  	<div class="pincode-containerm">
+					<ion-grid class="pincode">
+					  <ion-row>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(1)">1</button></ion-col>	
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(2)">2</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(3)">3</button></ion-col>
+					  </ion-row>
+					  <ion-row>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(4)">4</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(5)">5</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(6)">6</button></ion-col>
+					  </ion-row>
+					  <ion-row>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(7)">7</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(8)">8</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(9)">9</button></ion-col>
+					  </ion-row>
+					  <ion-row>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="createPinCode()"> <ion-icon name="checkmark"></ion-icon></button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="getInput(0)">0</button></ion-col>
+					    <ion-col col-4><button class="pin-button" ion-button clear (click)="clearInput()"> <ion-icon name="close"></ion-icon></button></ion-col>
+					  </ion-row>
+					</ion-grid>
+				</div>
+			</ion-slide>
+		</ion-slides>
+		</ng-template>
+
 </ion-content>
 
 
