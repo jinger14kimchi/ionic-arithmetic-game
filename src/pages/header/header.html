@@ -1,0 +1,13 @@
+<ion-header class="header">
+	<img src="assets/imgs/header.jpg" id="header">
+</ion-header>
+<ion-content>
+		<ion-grid class="timeline-menu">
+			<ion-row>
+				<ion-col col-3><button ion-button clear (click)="gotoTimeline()"> <ion-icon  name="ios-create"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoCalendar()"> <ion-icon name="md-calendar"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoProfile()"> <ion-icon  name="person"></ion-icon></button></ion-col>
+				<ion-col col-3><button ion-button clear (click)="gotoSettings()"> <ion-icon n name="menu"></ion-icon></button></ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-content>

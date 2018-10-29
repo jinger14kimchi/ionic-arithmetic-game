@@ -13,7 +13,10 @@ import { SQLite } from '@ionic-native/sqlite';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { TimelinePage } from '../pages/timeline/timeline';
+import { ProfilePage } from '../pages/profile/profile';
+import { CalendarPage } from '../pages/calendar/calendar';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
+
 import { DatabaseProvider } from '../providers/database/database';
 
 import { Toast } from '@ionic-native/toast';
@@ -21,6 +24,9 @@ import { Toast } from '@ionic-native/toast';
 import { AddDataPage } from '../pages/add-data/add-data';
 import { EditDataPage } from '../pages/edit-data/edit-data';
 import { GamePage } from '../pages/game/game';
+
+import { HeaderPage } from '../pages/header/header';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +36,10 @@ import { GamePage } from '../pages/game/game';
     MainMenuPage,
     EditDataPage,
     AddDataPage,
-    GamePage
+    GamePage,
+    ProfilePage,
+    CalendarPage,
+    HeaderPage
   ],
   imports: [
     BrowserModule,
@@ -46,7 +55,10 @@ import { GamePage } from '../pages/game/game';
     MainMenuPage,
     EditDataPage,
     AddDataPage,
-    GamePage
+    GamePage,
+    ProfilePage,
+    CalendarPage,
+    HeaderPage
   ],
   providers: [
     StatusBar,
