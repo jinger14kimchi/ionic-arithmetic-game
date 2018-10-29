@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { AddDataPage } from '../add-data/add-data';
+import { EditDataPage } from '../edit-data/edit-data';
 
 @IonicPage()
 @Component({
@@ -8,121 +11,81 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'game.html',
 })
 export class GamePage {
-	type = "Witik";
-	inputtedNum = "";
-	time = 0;
-	score = 0;
-  answer:any;
-
-	operation;
-	firstNum;
-	secondNum;
-
-	totalItems = 0;
-
-	// ************************************************************************
-	// ANG KULANG KAY DAPAT DEPENDE ANG TIMER SA 
-	// MODE SA GAME
-	// DEPENDE PUD SA MODE ANG MADISPLAY AFTER GAME OVeR
-	// KUNG witik MODE, --COUNT DOWN-- totalItems of correct ang display
-	// KUNG abtik MODE, --COUNT UP-- time na nacomplete nag answer ang 20 items
-	// ************************************************************************
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	this.randomize();
-  	this.startCount();
+  expenses: any = [];
+  totalIncome = 0;
+  totalExpense = 0;
+  balance = 0;
+	
+  constructor(public navCtrl: NavController, public navParams: NavParams,  private sqlite: SQLite) {
 
   }
 
-  startCount() {
-  	// ask if it's witik or abtik mode
-  	// witik = 60 seconds to solve as many as possible
-  	// abtik = solve 20 items as fast as possible
-
-  	console.log("start count na");
-  	let interval = setInterval(function(){
-  		this.time++;
-  		if(this.time == 5) {
-  			clearInterval(interval);
-  			this.timesUp();
-  		}
-  	}.bind(this), 1000);
-  }
-
-  timesUp() {
-  	console.log("time is up, your score is: ");
-  }
-
-  numClicked(num) {
-  	this.inputtedNum += num;
-  }
-
-  clear() {
-  	this.inputtedNum = "";
-  }
-
-  submitAnswer() {
-  	console.log("Your Answer: ", this.inputtedNum);
-  	console.log("Right: ", this.answer);
-
-  	if(this.answer == this.inputtedNum) {
-  		this.score ++;
-  	}
-  	console.log("Score: ", this.score);
-  	this.totalItems++;
-  	this.clear();
-  	this.randomize();
-  	// show new random numbers
-  }
-
-  genRandomNum(limit = 9) {
-  	this.firstNum =  Math.floor(Math.random() * limit);
-  	this.secondNum = Math.floor(Math.random() * 9);
-  }
-
-  randomize() {
-  	let signs = ['+', '-', '/', '*'];
-  	let op = Math.floor(Math.random() * (4));
-  	this.operation = signs[op];
-
-  	if(this.operation == '/' || this.operation == '-') { 
-  		this.genRandomNum(20);
-  		if(this.firstNum < this.secondNum) {
-  			this.randomize();
-  		} 
-  		else { 
-  			if(this.operation == '-') {
-  				this.answer = this.firstNum - this.secondNum;
-  			}
-  			else if(this.firstNum % this.secondNum == 0) {
-		  			this.answer = this.firstNum / this.secondNum;
-		  	}
-		  	else {
-		  		this.randomize();
-		  	} 
-  		}
-  	}
-  	else {
-  		this.genRandomNum();
-  	
-  		if(this.operation == '+') {
-  			this.answer = this.firstNum + this.secondNum;
-  		} 
-	  	else if(this.operation == '*') {
-				this.operation = 'x';
-	  		if(this.secondNum == 0) {
-	  			this.answer = 0;
-	  		} 
-
-	  		else {
-	  			this.answer = this.firstNum * this.secondNum;
-	  		}
-	  	}
-  	} 
-
-  }
   ionViewDidLoad() {
-    console.log('ionViewDidLoad GamePage');
+    console.log("Game page did load");
+    this.getData();
+  }
+
+  ionViewWillEnter() {
+    console.log("ion will enter");
+    this.getData();
+  }
+
+  getData() {
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('CREATE TABLE IF NOT EXISTS expense(rowid INTEGER PRIMARY KEY, date TEXT, type TEXT, description TEXT, amount INT)', [])
+      .then(res => console.log('Executed SQL'))
+      .catch(e => console.log(e));
+      db.executeSql('SELECT * FROM expense ORDER BY rowid DESC', [])
+      .then(res => {
+        this.expenses = [];
+        for(var i=0; i<res.rows.length; i++) {
+          this.expenses.push({rowid:res.rows.item(i).rowid,date:res.rows.item(i).date,type:res.rows.item(i).type,description:res.rows.item(i).description,amount:res.rows.item(i).amount})
+        }
+      })
+      .catch(e => console.log(e));
+      db.executeSql('SELECT SUM(amount) AS totalIncome FROM expense WHERE type="Income"', [])
+      .then(res => {
+        if(res.rows.length>0) {
+          this.totalIncome = parseInt(res.rows.item(0).totalIncome);
+          this.balance = this.totalIncome-this.totalExpense;
+        }
+      })
+      .catch(e => console.log(e));
+      db.executeSql('SELECT SUM(amount) AS totalExpense FROM expense WHERE type="Expense"', [])
+      .then(res => {
+        if(res.rows.length>0) {
+          this.totalExpense = parseInt(res.rows.item(0).totalExpense);
+          this.balance = this.totalIncome-this.totalExpense;
+        }
+      })
+    }).catch(e => console.log(e));
+}
+
+  addData() {
+    this.navCtrl.push(AddDataPage);
+  }
+
+  editData(rowid) {
+    this.navCtrl.push(EditDataPage, {
+      rowid:rowid
+    });
+  }
+
+  deleteData(rowid) {
+    this.sqlite.create({
+      name: 'ionicdb.db',
+      location: 'default'
+    }).then((db: SQLiteObject) => {
+      db.executeSql('DELETE FROM expense WHERE rowid=?', [rowid])
+      .then(res => {
+        console.log(res);
+        this.getData();
+      })
+      .catch(e => console.log(e));
+    }).catch(e => console.log(e));
   }
 
 }

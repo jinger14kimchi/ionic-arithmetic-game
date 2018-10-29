@@ -2,20 +2,29 @@
 	<p>How are you?</p>
 </ion-header>
 <ion-content padding>
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing...">
+    </ion-refresher-content>
+  </ion-refresher>
+
 	<div>
 		<ion-grid>
 			<ion-row>
 				<ion-col col-10>
 					<ion-img width="40" height="40" src="../../assets/imgs/panda-pink.png"></ion-img>
-					<textarea type="text" class="entry" placeholder="Spill it out.." id="content" [(ngModel)]="content"></textarea>
+					<ion-textarea type="text" class="entry" placeholder="Spill it out.." id="content" [(ngModel)]="content"></ion-textarea>
 					<ion-item>
 					  <ion-label>Mood</ion-label>
-					  <ion-select [(ngModel)]="mood">
-					    <ion-option value="{{ mood[0] }}">Joy</ion-option>
-					    <ion-option value="{{ mood[1]  }}">Disgust</ion-option>
-					    <ion-option value="{{ mood[2]  }}">Anger</ion-option>
-					    <ion-option value="{{ mood[3]  }}">Sadness</ion-option>
-					    <ion-option value="{{ mood[4]  }}">Fear</ion-option>
+					  <ion-select [(ngModel)]="selected_mood">
+					    <ion-option value="{{ mood[0] }}">{{ mood[0] }}</ion-option>
+					    <ion-option value="{{ mood[1] }}">{{ mood[1] }}</ion-option>
+					    <ion-option value="{{ mood[2] }}">{{ mood[2] }}</ion-option>
+					    <ion-option value="{{ mood[3] }}">{{ mood[3] }}</ion-option>
+					    <ion-option value="{{ mood[4] }}">{{ mood[4] }}</ion-option>
 					  </ion-select>
 					</ion-item>
 				</ion-col>
@@ -32,13 +41,11 @@
 		</ion-row>
 	</ion-grid>
 
-	<div class="entries-list" *ngFor="let item of items">
+	<div class="entries-list" *ngFor="let item of reversed_items">
 		<ion-list>
-		  <ion-item class="entry-display" id="{{ item.id }}">		  	
-		  	
+		  <ion-item class="entry-display" id="{{ item.id }}">		  			  	
 		  	<div class="entry-profile">
-				<ion-img width="80" height="80" src="../../assets/imgs/panda-pink.png" class="float-left"></ion-img>
-		  		
+				<ion-img width="50" height="50" src="../../assets/imgs/panda-pink.png" class="float-left"></ion-img>		  		
 			  		<h1>{{ item.mood }}</h1>
 			  		<small>{{ item.date }}</small>	
 		  	</div>		

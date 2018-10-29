@@ -13,7 +13,6 @@ export class HomePage {
 	inputCode:string = "";
 	TimelinePage = TimelinePage;
 	doneSetup: boolean = false;
-	private storage: any;
  
   constructor(public navCtrl: NavController, private storage: Storage) {
   	this.storage = storage;

@@ -16,12 +16,19 @@ import { TimelinePage } from '../pages/timeline/timeline';
 import { MainMenuPage } from '../pages/main-menu/main-menu';
 import { DatabaseProvider } from '../providers/database/database';
 
+import { Toast } from '@ionic-native/toast';
+
+import { AddDataPage } from '../pages/add-data/add-data';
+import { EditDataPage } from '../pages/edit-data/edit-data';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     TimelinePage,
-    MainMenuPage
+    MainMenuPage,
+    EditDataPage,
+    AddDataPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +41,9 @@ import { DatabaseProvider } from '../providers/database/database';
     MyApp,
     HomePage,
     TimelinePage,
-    MainMenuPage
+    MainMenuPage,
+    EditDataPage,
+    AddDataPage
   ],
   providers: [
     StatusBar,
@@ -42,7 +51,8 @@ import { DatabaseProvider } from '../providers/database/database';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DatabaseProvider,
     SQLitePorter,
-    SQLite
+    SQLite,
+    Toast
   ]
 })
 export class AppModule {}
